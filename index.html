@@ -16,26 +16,47 @@
         <h2 class="collectionChoice__title">
           Wybierz kolekcję lub wpisz tytuł, np.
         </h2>
-        <input type="text" name="" id="" class="collectionChoice__textInput" />
-        <input
-          type="radio"
-          name=""
-          id=""
-          class="collectionChoice__radioInput"
-        /><input
-          type="radio"
-          name=""
-          id=""
-          class="collectionChoice__radioInput"
-        /><input
-          type="radio"
-          name=""
-          id=""
-          class="collectionChoice__radioInput"
-        />
-        <button class="collectionChoice__confirmButton">
-          Wyszukaj/Wyświetl
-        </button>
+        <form action="" class="collectionChoice__form">
+          <input
+            type="text"
+            name=""
+            id=""
+            class="collectionChoice__textInput"
+          />
+          <ul class="collectionChoice__radioList">
+            <li>
+              <input
+                type="radio"
+                name="collectionChoice"
+                id="collection1"
+                class="collectionChoice__radioInput"
+              />
+              <label for="collection3">collection1</label>
+            </li>
+            <li>
+              <input
+                type="radio"
+                name="collectionChoice"
+                id="collection2"
+                class="collectionChoice__radioInput"
+              />
+              <label for="collection3">collection2</label>
+            </li>
+            <li>
+              <input
+                type="radio"
+                name="collectionChoice"
+                id="collection3"
+                class="collectionChoice__radioInput"
+              />
+              <label for="collection3">collection3</label>
+            </li>
+          </ul>
+
+          <button class="collectionChoice__confirmButton">
+            Wyszukaj/Wyświetl
+          </button>
+        </form>
       </div>
       <div class="collectionContent">
         <h2 class="collectionContent__title">Nazwa kolekcji</h2>
