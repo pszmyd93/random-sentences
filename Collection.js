@@ -31,12 +31,15 @@ class Collection {
   constructor() {
     
   }
-  getCollection(e, name) {
+  getCollection(e, radioButtons) {
     e.preventDefault()
-    const collectionChosen = data.find(collection => {
-      return collection.id == name;
+    const radioChecked = radioButtons.find(radio => {
+      return radio.checked;
     })
-    console.log(e.target);
+    const collectionChosen = data.find(collection => {
+      return collection.id == radioChecked.id;
+    })
+    console.log(collectionChosen);
     return collectionChosen;
   }
 }
