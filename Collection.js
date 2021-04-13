@@ -29,7 +29,7 @@ const data = [collection1, collection2, collection3]
 
 class Collection {
   constructor() {
-    
+    this.collectionChosen = [];
   }
   setCollectionTitle(name) {
     const title = document.querySelector('.collectionContent__title')
@@ -46,7 +46,14 @@ class Collection {
     })
     console.log(collectionChosen);
     this.setCollectionTitle(collectionChosen.id)
+    this.collectionChosen = collectionChosen;
     return collectionChosen;
+  }
+
+  displaySentence(randomSentenceContent) {
+    const randomIndex = Math.floor(Math.random() * this.collectionChosen.sentences.length);
+    console.log(randomIndex);
+    randomSentenceContent.textContent = this.collectionChosen.sentences[randomIndex].sentence;
   }
 }
 export default Collection;
