@@ -73,6 +73,7 @@ class Collection {
     console.log(collectionChosen);
     this.setCollectionTitle(collectionChosen.id)
     this.collectionChosen = collectionChosen;
+    this.displaySentence("first")
     return collectionChosen;
   }
   
