@@ -29,11 +29,37 @@ const data = [collection1, collection2, collection3]
 
 class Collection {
   constructor() {
+    this.sentenceContent = document.querySelector('.collectionContent__collectionObject')
     this.collectionChosen = [];
+    this.currentSentenceIndex = 0;
   }
   setCollectionTitle(name) {
     const title = document.querySelector('.collectionContent__title')
     title.textContent = name;
+  }
+
+  displaySentence(indexChange) {
+    switch (indexChange) {
+      case "first":
+        this.currentSentenceIndex = 0;
+        break;
+      case "next":
+        if(this.currentSentenceIndex < this.collectionChosen.sentences.length - 1) {
+          this.currentSentenceIndex++;
+        }
+        console.log(this.currentSentenceIndex);
+        break;
+      case "prev":
+        if(this.currentSentenceIndex > 0) {
+          this.currentSentenceIndex--;
+        }
+        console.log(this.currentSentenceIndex);
+        break;
+      default:
+        this.currentSentenceIndex = Math.floor(Math.random() * this.collectionChosen.sentences.length);
+        break;
+    }
+    this.sentenceContent.textContent = this.collectionChosen.sentences[this.currentSentenceIndex].sentence;
   }
 
   getCollection(e, radioButtons) {
@@ -49,11 +75,6 @@ class Collection {
     this.collectionChosen = collectionChosen;
     return collectionChosen;
   }
-
-  displaySentence(randomSentenceContent) {
-    const randomIndex = Math.floor(Math.random() * this.collectionChosen.sentences.length);
-    console.log(randomIndex);
-    randomSentenceContent.textContent = this.collectionChosen.sentences[randomIndex].sentence;
-  }
+  
 }
 export default Collection;

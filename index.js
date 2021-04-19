@@ -4,8 +4,11 @@ const collection = new Collection()
 
 const form = document.querySelector('.collectionChoice__form')
 const radioButtons = [...form.querySelectorAll('input[type="radio"]')]
-const randomSentenceContent = document.querySelector('.collectionContent__collectionObject')
 const randomSentenceButton = document.querySelector('.collectionContent__nextButton')
+const nextSentenceButton = document.querySelector('.displayMode__displaySentenceNext')
+const prevSentenceButton = document.querySelector('.displayMode__displaySentencePrev')
 
 form.addEventListener('submit', (e) => collection.getCollection(e, radioButtons))
-randomSentenceButton.addEventListener('click', () => collection.displaySentence(randomSentenceContent))
+randomSentenceButton.addEventListener('click', () => collection.displaySentence())
+nextSentenceButton.addEventListener('click', () => collection.displaySentence("next"))
+prevSentenceButton.addEventListener('click', () => collection.displaySentence("prev"))
