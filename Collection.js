@@ -32,6 +32,7 @@ class Collection {
     this.sentenceContent = document.querySelector('.collectionContent__collectionObject')
     this.collectionChosen = [];
     this.currentSentenceIndex = 0;
+    this.toggleOrder = false;
   }
   setCollectionTitle(name) {
     const title = document.querySelector('.collectionContent__title')
@@ -60,6 +61,22 @@ class Collection {
         break;
     }
     this.sentenceContent.textContent = this.collectionChosen.sentences[this.currentSentenceIndex].sentence;
+  }
+
+  toggleDisplayOrder(randomSentenceButton, nextSentenceButton, prevSentenceButton) {
+    this.toggleOrder = !this.toggleOrder;
+    if (this.toggleOrder == true) {
+      randomSentenceButton.disabled = true;
+      nextSentenceButton.disabled = false;
+      prevSentenceButton.disabled = false;
+      this.displaySentence("first")
+    } else {
+      randomSentenceButton.disabled = false;
+      nextSentenceButton.disabled = true;
+      prevSentenceButton.disabled = true;
+      this.displaySentence()
+    }
+    console.log(this.toggleOrder);
   }
 
   getCollection(e, radioButtons) {
