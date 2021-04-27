@@ -38,17 +38,22 @@ const data = [collection1, collection2, collection3, collection4]
 
 class Collection {
   constructor() {
-    this.sentenceContent = document.querySelector('.collectionContent__collectionObject')
+    this.sentenceContentText = document.querySelector('.collectionContent__collectionObject')
+    this.titleContentText = document.querySelector('.collectionContent__title')
     this.collectionChosen = [];
     this.currentSentenceIndex = 0;
     this.toggleOrder = false;
   }
+
   setCollectionTitle(name) {
-    const title = document.querySelector('.collectionContent__title')
-    title.textContent = name;
+    this.titleContentText.textContent = name;
   }
 
-  displaySentence(indexChange) {
+  getRandomIndex() {
+    return Math.floor(Math.random() * this.collectionChosen.sentences.length)
+  }
+
+  switchSentenceIndex(indexChange) {
     switch (indexChange) {
       case "first":
         this.currentSentenceIndex = 0;
@@ -57,19 +62,22 @@ class Collection {
         if(this.currentSentenceIndex < this.collectionChosen.sentences.length - 1) {
           this.currentSentenceIndex++;
         }
-        console.log(this.currentSentenceIndex);
         break;
       case "prev":
         if(this.currentSentenceIndex > 0) {
           this.currentSentenceIndex--;
         }
-        console.log(this.currentSentenceIndex);
         break;
       default:
-        this.currentSentenceIndex = Math.floor(Math.random() * this.collectionChosen.sentences.length);
+        this.currentSentenceIndex = this.getRandomIndex();
         break;
     }
-    this.sentenceContent.textContent = this.collectionChosen.sentences[this.currentSentenceIndex].sentence;
+    return this.currentSentenceIndex;
+  }
+
+  displaySentence(indexChange) {
+    const newSentenceIndex = this.switchSentenceIndex(indexChange);
+    this.sentenceContentText.textContent = this.collectionChosen.sentences[newSentenceIndex].sentence;
   }
 
   toggleDisplayOrder(randomSentenceButton, nextSentenceButton, prevSentenceButton) {
@@ -83,21 +91,18 @@ class Collection {
       randomSentenceButton.disabled = false;
       nextSentenceButton.disabled = true;
       prevSentenceButton.disabled = true;
-      this.displaySentence()
     }
-    console.log(this.toggleOrder);
   }
 
   getCollection(e, radioButtons, textInput) {
     e.preventDefault()
     if(textInput.value != "") { 
-      console.log(textInput.value);
       const collectionChosen = data.find(collection => {
         return collection.id == textInput.value;
       })
       // if() dorobić sprawdzanie czy znajduje jakąś kolekcję
-      this.setCollectionTitle(textInput.value)
       this.collectionChosen = collectionChosen;
+      this.setCollectionTitle(textInput.value)
       this.displaySentence("first")
       return collectionChosen
     } else {
@@ -107,7 +112,6 @@ class Collection {
       const collectionChosen = data.find(collection => {
         return collection.id == radioChecked.id;
       })
-      console.log(collectionChosen);
       this.setCollectionTitle(collectionChosen.id)
       this.collectionChosen = collectionChosen;
       this.displaySentence("first")
