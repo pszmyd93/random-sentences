@@ -25,7 +25,16 @@ const collection3 = {
   ]
 };
 
-const data = [collection1, collection2, collection3]
+const collection4 = {
+  id: "ukryta",
+  sentences: [
+    {id: 1, sentence: "tajemnica"},
+    {id: 2, sentence: "sekret"},
+    {id: 3, sentence: "zagadka"},
+  ]
+}
+
+const data = [collection1, collection2, collection3, collection4]
 
 class Collection {
   constructor() {
@@ -79,20 +88,32 @@ class Collection {
     console.log(this.toggleOrder);
   }
 
-  getCollection(e, radioButtons) {
+  getCollection(e, radioButtons, textInput) {
     e.preventDefault()
-    const radioChecked = radioButtons.find(radio => {
-      return radio.checked;
-    })
-    const collectionChosen = data.find(collection => {
-      return collection.id == radioChecked.id;
-    })
-    console.log(collectionChosen);
-    this.setCollectionTitle(collectionChosen.id)
-    this.collectionChosen = collectionChosen;
-    this.displaySentence("first")
-    return collectionChosen;
+    if(textInput.value != "") { 
+      console.log(textInput.value);
+      const collectionChosen = data.find(collection => {
+        return collection.id == textInput.value;
+      })
+      // if() dorobić sprawdzanie czy znajduje jakąś kolekcję
+      this.setCollectionTitle(textInput.value)
+      this.collectionChosen = collectionChosen;
+      this.displaySentence("first")
+      return collectionChosen
+    } else {
+      const radioChecked = radioButtons.find(radio => {
+        return radio.checked;
+      })
+      const collectionChosen = data.find(collection => {
+        return collection.id == radioChecked.id;
+      })
+      console.log(collectionChosen);
+      this.setCollectionTitle(collectionChosen.id)
+      this.collectionChosen = collectionChosen;
+      this.displaySentence("first")
+      return collectionChosen;
+    }
   }
-  
+
 }
 export default Collection;
