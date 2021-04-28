@@ -38,6 +38,7 @@ const data = [collection1, collection2, collection3, collection4]
 
 class Collection {
   constructor() {
+    this.data = this.fetchCollections()
     this.sentenceContentText = document.querySelector('.collectionContent__collectionObject')
     this.titleContentText = document.querySelector('.collectionContent__title')
     this.collectionChosen = [];
@@ -45,8 +46,18 @@ class Collection {
     this.toggleOrder = false;
   }
 
+  fetchCollections() {
+    const adress = "./data.json"
+    let collections = {}
+    fetch(adress)
+      .then(res => res.json())
+      .then(data => Object.assign(collections, data))
+    return collections
+  }
+
   setCollectionTitle(name) {
     this.titleContentText.textContent = name;
+    console.log(this.data);
   }
 
   getRandomIndex() {
