@@ -36,11 +36,8 @@ const collection4 = {
 
 const data = [collection1, collection2, collection3, collection4]
 
-import Validator from './Validator.js'
-
 class Collection {
   constructor() {
-    this.validator = new Validator();
     this.sentenceContentText = document.querySelector('.collectionContent__collectionObject')
     this.titleContentText = document.querySelector('.collectionContent__title')
     this.collectionChosen = [];
@@ -117,10 +114,8 @@ class Collection {
     const radioChecked = radioButtons.find(radio => {
       return radio.checked;
     })
-    const textInputNotEmpty = this.validator.notEmptyCheck(textInput.value);
 
-
-    if(textInputNotEmpty == true) {
+    if(textInput.value != '') {
       const collectionFoundFromTextInput = this.findCollection(textInput.value, data);
       if(collectionFoundFromTextInput != false) {
         this.setCollection(collectionFoundFromTextInput)
