@@ -114,19 +114,10 @@ class Collection {
     const radioChecked = radioButtons.find(radio => {
       return radio.checked;
     })
-
-    if(textInput.value != '') {
-      const collectionFoundFromTextInput = this.findCollection(textInput.value, data);
-      if(collectionFoundFromTextInput != false) {
-        this.setCollection(collectionFoundFromTextInput)
-      } else {
-        if(radioChecked) {
-          const collectionChosen = this.findCollection(radioChecked.id, data)
-          this.setCollection(collectionChosen)
-        } else {
-          console.log("nie znaleziono");
-        }
-      }
+    const collectionFoundFromTextInput = this.findCollection(textInput.value, data);
+    
+    if(collectionFoundFromTextInput != false) {
+      this.setCollection(collectionFoundFromTextInput)
     } else {
       if(radioChecked) {
         const collectionChosen = this.findCollection(radioChecked.id, data)
