@@ -107,9 +107,7 @@ class Collection {
   }
 
   findCollection(name, data) {
-    const collectionChosen = data.find(collection => {
-      return collection.id == name;
-    })
+    const collectionChosen = data.find(collection => (collection.id == name))
     return collectionChosen || false
   }
 
@@ -122,21 +120,19 @@ class Collection {
   getCollection(e, radioButtons, textInput) {
     e.preventDefault()
 
-    const radioChecked = radioButtons.find(radio => {
-      return radio.checked;
-    })
+    const radioChecked = radioButtons.find(radio => radio.checked)
     const collectionFoundFromTextInput = this.findCollection(textInput.value, data);
     
     if(collectionFoundFromTextInput != false) {
-      this.setCollection(collectionFoundFromTextInput)
-    } else {
-      if(radioChecked) {
-        const collectionChosen = this.findCollection(radioChecked.id, data)
-        this.setCollection(collectionChosen)
-      } else {
-        console.log("nie znaleziono");
-      }
+      this.setCollection(collectionFoundFromTextInput) 
+      return
     }
+    if(radioChecked) {
+      const collectionChosen = this.findCollection(radioChecked.id, data)
+      this.setCollection(collectionChosen)
+      return
+    }
+    console.log("nie znaleziono");
   }
 
 }
