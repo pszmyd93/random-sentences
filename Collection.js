@@ -1,41 +1,3 @@
-const collection1 = {
-  id: "rapcytaty",
-  sentences: [
-  {id: 1,
-  sentence: "rób swoje i nie patrz się na innych jak ci coś nie wyjdzie to nie szukaj winnych"},
-  {id: 2,
-  sentence: "tylko to zostaje mi to po każdej zawleczki nakrętki i kapsle"},
-  {id: 3,
-  sentence: "duchy mierzą mnie swoimi pustymi ślepami patrzymy na siebie wiec długimi minutami"}
-  ]
-};
-const collection2 = {
-  id: "żyrcie",
-  sentences: [
-    {id: 1, sentence: "muszynianka"},
-    {id: 2, sentence: "banany"},
-    {id: 3, sentence: "orzechy nerkowca"}
-  ]
-};
-const collection3 = {
-  id: "kawa",
-  sentences: [
-    {id: 1, sentence: "z mlekiem"},
-    {id: 2, sentence: "bez mleka"},
-  ]
-};
-
-const collection4 = {
-  id: "ukryta",
-  sentences: [
-    {id: 1, sentence: "tajemnica"},
-    {id: 2, sentence: "sekret"},
-    {id: 3, sentence: "zagadka"},
-  ]
-}
-
-const data = [collection1, collection2, collection3, collection4]
-
 class Collection {
   constructor() {
     this.data = this.fetchCollections()
@@ -48,16 +10,15 @@ class Collection {
 
   fetchCollections() {
     const adress = "./data.json"
-    let collections = {}
+    let dataObject = {}
     fetch(adress)
       .then(res => res.json())
-      .then(data => Object.assign(collections, data))
-    return collections
+      .then(data => Object.assign(dataObject, data))
+    return dataObject
   }
 
   setCollectionTitle(name) {
     this.titleContentText.textContent = name;
-    console.log(this.data);
   }
 
   getRandomIndex() {
@@ -106,9 +67,9 @@ class Collection {
     }
   }
 
-  findCollection(name, data) {
-    const collectionChosen = data.find(collection => (collection.id == name))
-    return collectionChosen || false
+  findCollection(name) {
+    const collectionChosen = this.data.collections.find(collection => (collection.id == name))
+    return collectionChosen
   }
 
   setCollection(collectionChosen) {
@@ -121,14 +82,14 @@ class Collection {
     e.preventDefault()
 
     const radioChecked = radioButtons.find(radio => radio.checked)
-    const collectionFoundFromTextInput = this.findCollection(textInput.value, data);
+    const collectionFoundFromTextInput = this.findCollection(textInput.value);
     
-    if(collectionFoundFromTextInput != false) {
+    if(collectionFoundFromTextInput) {
       this.setCollection(collectionFoundFromTextInput) 
       return
     }
     if(radioChecked) {
-      const collectionChosen = this.findCollection(radioChecked.id, data)
+      const collectionChosen = this.findCollection(radioChecked.id)
       this.setCollection(collectionChosen)
       return
     }
