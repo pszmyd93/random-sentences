@@ -1,0 +1,15 @@
+{
+  "hidden": 
+    {
+      "id": "zahaslowane",
+      "sentences": [
+      {"id": 1,
+      "sentence": "ważne hasła"},
+      {"id": 2,
+      "sentence": "ważne tajemnice"},
+      {"id": 3,
+      "sentence": "ważne sekrety"}
+      ]
+    }
+  
+}

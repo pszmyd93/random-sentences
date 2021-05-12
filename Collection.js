@@ -78,11 +78,28 @@ class Collection {
       this.displaySentence("first")
   }
 
-  getCollection(e, radioButtons, textInput) {
+  async findHiddenCollection(textInput) {
+    const path = `./${textInput.value}.json`;
+    const collectionFound = await fetch(path)
+      .then(res => res.json())
+      .then(data => {
+        return data[textInput.value]
+      })
+      .catch(() => false)
+    return collectionFound
+  }
+
+  async getCollection(e, radioButtons, textInput) {
     e.preventDefault()
 
     const radioChecked = radioButtons.find(radio => radio.checked)
     const collectionFoundFromTextInput = this.findCollection(textInput.value);
+    const hiddenCollectionFound = await this.findHiddenCollection(textInput)
+
+    if(hiddenCollectionFound) {
+      this.setCollection(hiddenCollectionFound)
+      return
+    }
     
     if(collectionFoundFromTextInput) {
       this.setCollection(collectionFoundFromTextInput) 
@@ -93,6 +110,7 @@ class Collection {
       this.setCollection(collectionChosen)
       return
     }
+    
     console.log("nie znaleziono");
   }
 
