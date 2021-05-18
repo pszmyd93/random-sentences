@@ -12,6 +12,7 @@ const toggleOrderButton = document.querySelector('.displayMode__toggleButton')
 
 form.addEventListener('submit', (e) => collection.getCollection(e, radioButtons, textInput))
 randomSentenceButton.addEventListener('click', () => collection.displaySentence())
+
 nextSentenceButton.addEventListener('click', () => collection.displaySentence("next"))
 prevSentenceButton.addEventListener('click', () => collection.displaySentence("prev"))
 toggleOrderButton.addEventListener('click', () => collection.toggleDisplayOrder(randomSentenceButton, nextSentenceButton, prevSentenceButton))
