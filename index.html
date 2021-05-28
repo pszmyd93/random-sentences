@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="Collection.js" type="module"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="Collection.js" type="module" defer></script>
     <script src="index.js" type="module" defer></script>
     <title>Random sentences</title>
   </head>
@@ -15,49 +16,25 @@
     </header>
     <main class="wrapper">
       <div class="collectionChoice">
-        <h2 class="collectionChoice__title">
-          Wybierz kolekcję lub wpisz tytuł, np.
-        </h2>
+        <h2 class="collectionChoice__title">Wybierz kolekcję lub wpisz tytuł, np.</h2>
         <form action="" class="collectionChoice__form">
-          <input
-            type="text"
-            name=""
-            id=""
-            class="collectionChoice__textInput"
-          />
+          <input type="text" name="" id="" class="collectionChoice__textInput" />
           <ul class="collectionChoice__radioList">
             <li>
-              <input
-                type="radio"
-                name="collectionChoice"
-                id="żyrcie"
-                class="collectionChoice__radioInput"
-              />
+              <input type="radio" name="collectionChoice" id="żyrcie" class="collectionChoice__radioInput" />
               <label for="collection3">Żyrcie</label>
             </li>
             <li>
-              <input
-                type="radio"
-                name="collectionChoice"
-                id="rapcytaty"
-                class="collectionChoice__radioInput"
-              />
+              <input type="radio" name="collectionChoice" id="rapcytaty" class="collectionChoice__radioInput" />
               <label for="collection3">Rapcytaty</label>
             </li>
             <li>
-              <input
-                type="radio"
-                name="collectionChoice"
-                id="kawa"
-                class="collectionChoice__radioInput"
-              />
+              <input type="radio" name="collectionChoice" id="kawa" class="collectionChoice__radioInput" />
               <label for="collection3">Kawa</label>
             </li>
           </ul>
 
-          <button class="collectionChoice__confirmButton" type="submit">
-            Wyszukaj/Wyświetl
-          </button>
+          <button class="collectionChoice__confirmButton" type="submit">Wyszukaj/Wyświetl</button>
         </form>
       </div>
       <div class="collectionContent">
@@ -65,15 +42,9 @@
         <p class="collectionContent__collectionObject">Losowe zdanie</p>
         <button class="collectionContent__nextButton">Wyświetl inne</button>
         <div class="collectionContent__displayMode displayMode">
-          <button class="displayMode__toggleButton">
-            Włącz/Wyłącz po kolei
-          </button>
-          <button class="displayMode__displaySentencePrev" disabled="true">
-            Poprzednie
-          </button>
-          <button class="displayMode__displaySentenceNext" disabled="true">
-            Następne
-          </button>
+          <button class="displayMode__toggleButton">Włącz/Wyłącz po kolei</button>
+          <button class="displayMode__displaySentencePrev" disabled="true">Poprzednie</button>
+          <button class="displayMode__displaySentenceNext" disabled="true">Następne</button>
         </div>
       </div>
     </main>
