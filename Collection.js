@@ -8,6 +8,13 @@ class Collection {
     this.toggleOrder = false;
   }
 
+  resetForm(radioButtons, textInput) {
+    radioButtons.forEach(radio => {
+      radio.checked = false;
+    });
+    textInput.value = "";
+  }
+
   fetchCollections() {
     const adress = "./data.json";
     let dataObject = {};
@@ -59,7 +66,6 @@ class Collection {
       randomSentenceButton.disabled = true;
       nextSentenceButton.disabled = false;
       prevSentenceButton.disabled = false;
-      this.displaySentence("first");
     } else {
       randomSentenceButton.disabled = false;
       nextSentenceButton.disabled = true;
@@ -92,25 +98,31 @@ class Collection {
   async getCollection(e, radioButtons, textInput) {
     e.preventDefault();
 
+    
+
     const radioChecked = radioButtons.find(radio => radio.checked);
     const collectionFoundFromTextInput = this.findCollection(textInput.value);
     const hiddenCollectionFound = await this.findHiddenCollection(textInput);
 
     if (hiddenCollectionFound) {
       this.setCollection(hiddenCollectionFound);
+      this.resetForm(radioButtons, textInput)
       return;
     }
 
     if (collectionFoundFromTextInput) {
       this.setCollection(collectionFoundFromTextInput);
+      this.resetForm(radioButtons, textInput)
       return;
     }
     if (radioChecked) {
       const collectionChosen = this.findCollection(radioChecked.id);
       this.setCollection(collectionChosen);
+      this.resetForm(radioButtons, textInput)
       return;
     }
 
+    
     console.log("nie znaleziono");
   }
 }
