@@ -21,7 +21,7 @@ $border-color: #aaa;
 }
 
 html {
-  font-size: 8px;
+  font-size: 10px;
 }
 
 body {
@@ -178,4 +178,25 @@ button {
 .displayMode__displaySentenceNext {
   display: block;
   grid-area: next;
+}
+
+@media (max-width: 1024px) {
+  .mainContent {
+    width: 90vw;
+  }
+}
+
+@media (max-width: 800px) {
+
+  .collectionChoice__form {
+    flex-direction: column;
+  }
+
+  .collectionChoice__radioList {
+    flex-direction: row;
+    justify-content: flex-end;
+    & li {
+      width:auto;
+    }
+  }
 }
